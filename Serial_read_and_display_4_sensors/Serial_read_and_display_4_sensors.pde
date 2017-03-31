@@ -23,6 +23,8 @@ Serial myPort;        // The serial port
 int xPos = 1;         // horizontal position of the graph
 int oneV = 0;
 int subject = 1;
+int condition = 0;
+int pressure= 0;
 float inByte1 = 0;
 float prevInByte1 = 0;
 float inByte2 = 0;
@@ -48,7 +50,7 @@ void setup () {
   // I know that the first port in the serial list-+  on my mac
   // is always my  Arduino, so I open Serial.list()[0].
   // Open whatever port is the one you're using.
-  myPort = new Serial(this, Serial.list()[0], 250000);
+  myPort = new Serial(this, Serial.list()[2], 115200);
 
   // don't generate a serialEvent() unless you get a newline character:
   myPort.bufferUntil('\n');
@@ -56,7 +58,7 @@ void setup () {
   background(0);
   //txt = createWriter("/media/solemaker/SOS/PressData/PressureSample" + year() + month() + day() + hour() + minute()+".csv"); 
   txt = createWriter("/Users/troy/Google Drive/TUe/Insights into Expirimental Data/Challenge2-IIED/Challenge2-IIED/" + year() + month() + day() + hour() + minute()+".csv");
-  txt.println("Arduino Time, " + "Sensor 1, " + "Sensor 2, " + "Sensor 3, " + "Sensor 4, " + "Processing Time, " + "Frame #");
+  txt.println("Arduino Time, " + "Sensor 1, " + "Sensor 2, " + "Sensor 3, " + "Sensor 4, " + "Processing Time, " + "Frame #, Condition, Pressure");
 }
 
 void draw () {
@@ -95,7 +97,7 @@ void draw () {
 
 
 
-  txt.println(list[0]+ ", " + list[1]+ ", " + list[2]+ ", " + list[3]+ ", " + list[4]+ ", " + millis() + ", " + frameNum);
+  txt.println(list[0]+ ", " + list[1]+ ", " + list[2]+ ", " + list[3]+ ", " + list[4]+ ", " + millis() + ", " + frameNum + ", " + condition+ ", " + pressure);
 
   stroke(255);  
   fill(255);
@@ -113,46 +115,69 @@ void draw () {
     // increment the horizontal position:
     xPos++;
   }
-   fill(255);
-    text ("Subject #" + subject + " Slide " + frameNum, width-150, 15);
+  fill(255);
+  text ("Subject #" + subject + " Slide " + frameNum, width-150, 15);
 }
 
-/*
+
 void serialEvent (Serial myPort) {
-  // get the ASCII string:
-  inString = myPort.readStringUntil('\n');
-
-  if (inString != null) {
-    // trim off any whitespace:
-    inString = trim(inString);
-  }
-}
-*/
+ // get the ASCII string:
+ inString = myPort.readStringUntil('\n');
+ 
+ if (inString != null) {
+ // trim off any whitespace:
+ inString = trim(inString);
+ }
+ }
+ 
 void keyPressed() {
   if (key == 's')  txt.println("Start key pressed at " + millis() + ", " + frameNum);
+
   if (key == '1') {
     fill(255);
     stroke(127, 34, 255);   
     line(xPos, 0, xPos, height);
     text ("1", xPos+3, 10);
+    condition = 1;
   }
   if (key == '2') {
     fill(255);
     stroke(34, 127, 255);   
     line(xPos, 0, xPos, height);
     text ("2", xPos+3, 10);
+    condition = 2;
   }
+  
   if (key == '3') {
     fill(255);
     stroke(127, 255, 34);   
     line(xPos, 0, xPos, height);
     text ("3", xPos+3, 10);
+    condition = 3;
   }
   if (key == '4') {
     fill(255);
-    stroke(255, 127, 34);   
+    stroke(255, 255, 34);   
     line(xPos, 0, xPos, height);
     text ("4", xPos+3, 10);
-  }  
+    condition = 4;
+  }
+     if (key == 'n') {
+    fill(255);
+    text ("Push", width - 80, height - 10);
+    pressure = 1;   
+  }
+     if (key == 'l') {
+    fill(255);
+    text ("Push Lightly", width - 80, height - 10);
+    pressure = 2;   
+  }
+   if (key == 'h') {
+    fill(255);
+    text ("Push Hard", width - 80, height - 10);
+    pressure = 3;   
+  }
 }
+
+
 
