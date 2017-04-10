@@ -1,0 +1,84 @@
+
+-----------------------------------------------------
+ Sensitivity analysis of Thurstone model
+-----------------------------------------------------
+ Estimated averages and range: 
+   first value: in original units
+   second value: scaled by pooled standard deviation
+     (pooled standard deviation = 155.495)
+   condition 1 :    134.12000      0.86253
+   condition 2 :     58.60000      0.37686
+   condition 3 :    300.48000      1.93240
+            range : 241.88 1.55554 (JND range = 1.09994)
+
+-----------------------------------------------------
+ Modeled sensitivities for average trials
+ for A1:RM_FinalMasterMonday
+-----------------------------------------------------
+ condition 2 : [number of trials in square brackets]
+ (1[25] - 2[25]) :
+   Cohen's d = 2.42837
+   JND = 1.71712
+   measure of non-overlap: 0.992417
+   measure of overlap: 0.224677
+   probability of average superiority: P(1>2) = 0.957021
+   area above ROC: 0.956967 (effect > 1.5 JND)
+   threshold = 96.36
+      type I  error P(1|2) = 0.112339
+      type II error P(2|1) = 0.112339
+ condition 3 : [number of trials in square brackets]
+ (1[25] - 3[25]) :
+   Cohen's d = -5.34936
+   JND = -3.78257
+   measure of non-overlap: 1
+   measure of overlap: 0.00748011
+   area above ROC: 0.999922 (effect > 3 JND)
+   threshold = 217.3
+      type I  error P(3|1) = 0.00374006
+      type II error P(1|3) = 0.00374006
+ (2[25] - 3[25]) :
+   Cohen's d = -7.77772
+   JND = -5.49968
+   measure of non-overlap: 1
+   measure of overlap: 0.000100716
+   area above ROC: 1 (effect > 3 JND)
+   threshold = 179.54
+      type I  error P(3|2) = 5.03578e-5
+      type II error P(2|3) = 5.03578e-5
+
+-----------------------------------------------------
+ Modeled sensitivities for individual trials
+ for A1:RM_FinalMasterMonday
+-----------------------------------------------------
+ condition 2 :
+ (1 - 2) :
+   Cohen's d = 0.485674
+   JND = 0.343423 (small effect)
+   measure of non-overlap: 0.686401
+   measure of overlap: 0.808132
+   probability of superiority: P(1>2) = 0.63436
+   area above ROC: 0.634323 (small effect)
+   threshold = 96.36
+      type I  error P(1|2) = 0.404066
+      type II error P(2|1) = 0.404066
+ condition 3 :
+ (1 - 3) :
+   Cohen's d = -1.06987
+   JND = -0.756513 (medium effect)
+   measure of non-overlap: 0.857661
+   measure of overlap: 0.592694
+   probability of superiority: P(3>1) = 0.775329
+   area above ROC: 0.775275 (medium effect)
+   threshold = 217.3
+      type I  error P(3|1) = 0.296347
+      type II error P(1|3) = 0.296347
+ (2 - 3) :
+   Cohen's d = -1.55554
+   JND = -1.09994 (effect > 1 JND)
+   measure of non-overlap: 0.940092
+   measure of overlap: 0.436703
+   probability of superiority: P(3>2) = 0.86432
+   area above ROC: 0.864257 (effect > 1 JND)
+   threshold = 179.54
+      type I  error P(3|2) = 0.218352
+      type II error P(2|3) = 0.218352

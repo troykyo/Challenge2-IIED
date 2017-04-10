@@ -1,0 +1,75 @@
+
+-----------------------------------------------------
+ Sensitivity analysis of Thurstone model
+-----------------------------------------------------
+ Estimated averages and range: 
+   first value: in original units
+   second value: scaled by pooled standard deviation
+     (pooled standard deviation = 1.70598)
+   condition 1 :   1021.17466    598.58378
+   condition 2 :      0.45502      0.26672
+   condition 3 :   1022.60951    599.42486
+            range : 1022.15 599.158 (JND range = 423.669)
+
+-----------------------------------------------------
+ Modeled sensitivities for average trials
+ for A1:RM_FinalMasterMonday
+-----------------------------------------------------
+ condition 2 : [number of trials in square brackets]
+ (1[25] - 2[25]) :
+   Cohen's d = 2991.59
+   JND = 2115.37
+   measure of non-overlap: 1
+   measure of overlap: 0
+   probability of average superiority: P(1>2) = 1
+   area above ROC: 1 (effect > 3 JND)
+   threshold = 510.815
+      type I  error P(1|2) = 0
+      type II error P(2|1) = 0
+ condition 3 : [number of trials in square brackets]
+ (1[25] - 3[25]) :
+   Cohen's d = -4.20536
+   JND = -2.97364
+   measure of non-overlap: 0.999987
+   measure of overlap: 0.0354936
+   area above ROC: 0.998521 (effect > 2.5 JND)
+   threshold = 1021.89
+      type I  error P(3|1) = 0.0177468
+      type II error P(1|3) = 0.0177468
+ (2[25] - 3[25]) :
+   Cohen's d = -2995.79
+   JND = -2118.34
+   measure of non-overlap: 1
+   measure of overlap: 0
+   area above ROC: 1 (effect > 3 JND)
+   threshold = 511.532
+      type I  error P(3|2) = 0
+      type II error P(2|3) = 0
+
+-----------------------------------------------------
+ Modeled sensitivities for individual trials
+ for A1:RM_FinalMasterMonday
+-----------------------------------------------------
+ condition 2 :
+ (1 - 2) :
+   Cohen's d = 598.317
+   JND = 423.074 (effect > 3 JND)
+   area above ROC: 1 (effect > 3 JND)
+   threshold = 510.815
+      type I  error P(1|2) = 3.74527e-10
+      type II error P(2|1) = 3.74527e-10
+ condition 3 :
+ (1 - 3) :
+   Cohen's d = -0.841073
+   JND = -0.594728 (medium effect)
+   area above ROC: 0.692719 (medium effect)
+   threshold = 1021.89
+      type I  error P(3|1) = 0.347852
+      type II error P(1|3) = 0.347852
+ (2 - 3) :
+   Cohen's d = -599.158
+   JND = -423.669 (effect > 3 JND)
+   area above ROC: 1 (effect > 3 JND)
+   threshold = 511.532
+      type I  error P(3|2) = 3.72429e-10
+      type II error P(2|3) = 3.72429e-10
