@@ -11,21 +11,23 @@ float maxNewtons = 0;
 int state = 0;
 int counter;
 int index=0;
+
 float mapIndex = 0;
 int arrayCounter = 1;
 int volt = 0;
 int voltIndex = 1;
 int peaks[] = new int[50];
 int voltPeaks[]= new int[50];
-String voltFile = "3Volt.csv";
-String pressureFile = "3Pressure.csv";
+int sensor=3;
+String voltFile = "2Volt.csv";
+String pressureFile = "2Pressure.csv";
 String path = "/Users/troy/Google Drive/TUe/Insights into Expirimental Data/Challenge2-IIED/Challenge2-IIED/Pressure tests/"; 
 
 void setup() {
 
   voltTable = loadTable(path+voltFile, "header");
   pressureTable = loadTable(path+pressureFile, "header");
-
+  voltTable.addColumn("Sensor", Table.INT);
   println(voltTable.getRowCount() + " total rows in voltage table");
   println(pressureTable.getRowCount() + " total rows in pressure table");
 
@@ -39,6 +41,7 @@ void setup() {
   for (TableRow row : voltTable.rows ()) {
     counter++;
     volt = row.getInt("20");
+    row.setInt("Sensor",sensor);
     if (volt == 1) {
       voltPeaks[voltIndex]=counter;
       print(voltPeaks[voltIndex] + " ");
@@ -56,13 +59,15 @@ void setup() {
       print (index);
       newtons = pressureTable.getFloat(index, "Newton");
       mm = pressureTable.getFloat(index, "mm");
-      stiffness = pressureTable.getFloat(index, "stiff");
+      stiffness = newtons/mm;
       println (" " + counter + " Newtons:" + newtons + " MM:" + mm + " Stiffness:" + stiffness);
-      
+      voltTable.setFloat(counter,"Newtons", newtons); 
+      voltTable.setFloat(counter,"MM", mm); 
+      voltTable.setFloat(counter,"Stiff", stiffness); 
       }
     }
   }
-  //saveTable(table, path+"Pressure"+voltFile);
+  saveTable(voltTable, path+"Pressure"+voltFile);
 }
 
 /*
