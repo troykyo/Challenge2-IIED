@@ -37,25 +37,15 @@ void setup() {
   println(referenceTable.getRowCount() + " total rows in pressure table");
   refMax=referenceTable.getRowCount();
 
-  finalTable.addColumn("User", Table.INT);
+  finalTable.addColumn("Button", Table.INT);
   finalTable.addColumn("Voltage", Table.INT);
   finalTable.addColumn("Stiffness", Table.FLOAT);
-  finalTable.addColumn("Button", Table.INT);
-  finalTable.addColumn("Pressure", Table.INT);
-  finalTable.addColumn("Sex", Table.INT);
-  finalTable.addColumn("Pref", Table.INT);
-  finalTable.addColumn("Pref2", Table.INT);
+ 
 
-  for (int user = 0; user<25; user++) {
+
     for (int sensor =1; sensor<5; sensor++) { 
-      for (int pressure =1; pressure<4; pressure++) {
-        buttonPress = str(sensor);
-        if (pressure == 1) press = " S"; 
-        if (pressure == 2) press = " N"; 
-        if (pressure == 3) press = " H";
-        buttonPress = buttonPress+press;
-        index = sourceTable.getInt(user, buttonPress);
-        println(buttonPress + " " + index);
+      for (int i = 0; i < 1023; i++) {
+        index=i;
         arrayCounter=0;
         arrayAvg=0;
         counter = 0;
@@ -74,19 +64,13 @@ void setup() {
         println(arrayAvg);
         println("");
         TableRow newRow = finalTable.addRow();        
-        newRow.setInt("User", user);
         newRow.setInt("Voltage", index);
-        newRow.setFloat("Stiffness", arrayAvg);
         newRow.setInt("Button", sensor);
-        newRow.setInt("Pressure", pressure);
-        newRow.setInt("Sex", sourceTable.getInt(user, "Sex"));
-        newRow.setInt("Pref", sourceTable.getInt(user, "Pref"));
-        newRow.setInt("Pref2", sourceTable.getInt(user, "Pref 2")); 
+        newRow.setFloat("Stiffness", arrayAvg);
+        
       }
     }
-  }
-
-saveTable(finalTable, "/Users/troy/Google Drive/TUe/Insights into Expirimental Data/Challenge2-IIED/Challenge2-IIED/IllmoTuesdayMaster.csv");
+  saveTable(finalTable, "/Users/troy/Google Drive/TUe/Insights into Expirimental Data/Challenge2-IIED/Challenge2-IIED/MasterLookup.csv");
 }
 
 /*
