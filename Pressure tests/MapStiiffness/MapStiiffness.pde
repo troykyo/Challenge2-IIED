@@ -10,12 +10,15 @@ float stiffness = 0;
 float maxNewtons = 0;
 int state = 0;
 int counter;
+int index=0;
+float mapIndex = 0;
 int arrayCounter = 1;
 int volt = 0;
+int voltIndex = 1;
 int peaks[] = new int[50];
 int voltPeaks[]= new int[50];
-String voltFile = "4Volt.csv";
-String pressureFile = "4Pressure.csv";
+String voltFile = "3Volt.csv";
+String pressureFile = "3Pressure.csv";
 String path = "/Users/troy/Google Drive/TUe/Insights into Expirimental Data/Challenge2-IIED/Challenge2-IIED/Pressure tests/"; 
 
 void setup() {
@@ -35,47 +38,62 @@ void setup() {
 
   for (TableRow row : voltTable.rows ()) {
     counter++;
-    volt = voltTable.getInt("20");
+    volt = row.getInt("20");
     if (volt == 1) {
-    
+      voltPeaks[voltIndex]=counter;
+      print(voltPeaks[voltIndex] + " ");
+      voltIndex++;
     }
   }
-  
-  
- 
-  saveTable(table, path+"Pressure"+voltFile);
-  */
+  println("");
+
+  for (arrayCounter = 1; arrayCounter<21; arrayCounter++) {
+    counter = voltPeaks[arrayCounter];
+    if ((peaks[arrayCounter] != 0) && (voltPeaks[arrayCounter] !=0) && (peaks[arrayCounter+1] != 0) && (voltPeaks[arrayCounter+1] !=0)) { 
+      for (counter = counter ;counter < voltPeaks[arrayCounter+1];counter++){
+      mapIndex = map(counter, voltPeaks[arrayCounter], voltPeaks[arrayCounter+1], peaks[arrayCounter], peaks[arrayCounter+1]);
+      index = int(mapIndex);
+      print (index);
+      newtons = pressureTable.getFloat(index, "Newton");
+      mm = pressureTable.getFloat(index, "mm");
+      stiffness = pressureTable.getFloat(index, "stiff");
+      println (" " + counter + " Newtons:" + newtons + " MM:" + mm + " Stiffness:" + stiffness);
+      
+      }
+    }
+  }
+  //saveTable(table, path+"Pressure"+voltFile);
 }
 
 /*
-    newtons = row.getFloat("Newton");
-    mm = row.getFloat("mm");
-    stiffness = newtons/mm;
-    row.setFloat("stiff", stiffness);
-    
-    for (int i = 1; i<50; i++) {
-    print(peaks[i] + " ");
-    table.setInt(i, "Peaks", peaks[i]);
-  }
-
-    
-        if (newtons > maxNewtons) {
-      maxNewtons = newtons;
-      state = 1;
-      //print("*");
-    } else if ((newtons > 80) && ( newtons < maxNewtons) && (state == 1)) {
-      println("");
-      //println (newtons + " " +maxNewtons);
-      row.setInt("peak", 1); 
-      println(counter+"\t"+ maxNewtons);
-      peaks[arrayCounter] = counter;
-      arrayCounter++;
-      state = 0;
-    } else {
-      if (newtons == 0) {
-        //print("!");
-        maxNewtons = 0;
-        state = 1;
-      }
-    }
-*/
+      newtons = row.getFloat("Newton");
+ mm = row.getFloat("mm");
+ stiffness = newtons/mm;
+ row.setFloat("stiff", stiffness);
+ 
+ for (int i = 1; i<50; i++) {
+ print(peaks[i] + " ");
+ table.setInt(i, "Peaks", peaks[i]);
+ }
+ 
+ 
+ if (newtons > maxNewtons) {
+ maxNewtons = newtons;
+ state = 1;
+ //print("*");
+ } else if ((newtons > 80) && ( newtons < maxNewtons) && (state == 1)) {
+ println("");
+ //println (newtons + " " +maxNewtons);
+ row.setInt("peak", 1); 
+ println(counter+"\t"+ maxNewtons);
+ peaks[arrayCounter] = counter;
+ arrayCounter++;
+ state = 0;
+ } else {
+ if (newtons == 0) {
+ //print("!");
+ maxNewtons = 0;
+ state = 1;
+ }
+ }
+ */
